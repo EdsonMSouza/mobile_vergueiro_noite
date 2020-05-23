@@ -3,6 +3,7 @@ package com.ems.bdsqlite.utils;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -18,7 +19,7 @@ public class Mensagem {
     }
 
     // Mostra a mensagem
-    public void show(String titulo, final String texto, int icone) {
+    public int show(String titulo, final String texto, int icone) {
         AlertDialog.Builder msg = new AlertDialog.Builder(_context);
         msg.setIcon(icone);
         msg.setTitle(titulo);
@@ -26,10 +27,10 @@ public class Mensagem {
 
         msg.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int id) {
-                ((AppCompatActivity) _context).finish();
+                //((AppCompatActivity) _context).finish();
             }
         });
         msg.show();
-
+        return 1;
     }
 }

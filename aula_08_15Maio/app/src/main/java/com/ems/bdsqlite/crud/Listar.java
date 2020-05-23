@@ -1,6 +1,7 @@
 package com.ems.bdsqlite.crud;
 
 import android.content.Context;
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
@@ -73,6 +74,12 @@ public class Listar extends AppCompatActivity {
         listViewAlunos.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Aluno aluno = (Aluno) listViewAlunos.getItemAtPosition(position);
+                Intent itAluno = new Intent(
+                        getApplicationContext(),
+                        Detalhes.class);
+                itAluno.putExtra("objAluno", aluno);
+                startActivity(itAluno);
             }
         });
 

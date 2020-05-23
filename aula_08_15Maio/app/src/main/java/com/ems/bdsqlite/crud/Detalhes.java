@@ -1,5 +1,6 @@
 package com.ems.bdsqlite.crud;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
@@ -9,6 +10,7 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.ems.bdsqlite.R;
+import com.ems.bdsqlite.pojo.Aluno;
 
 
 public class Detalhes extends AppCompatActivity {
@@ -34,15 +36,33 @@ public class Detalhes extends AppCompatActivity {
         btVoltar = findViewById(R.id.btVoltar);
         btHome = findViewById(R.id.btHome);
 
+        // ler os dados da Intent Listar
+        Intent itAluno = getIntent();
+        final Aluno aluno = (Aluno) itAluno.getExtras().getSerializable("objAluno");
+        id.setText(String.valueOf(aluno.getId()));
+        ra.setText(aluno.getRa());
+        nome.setText(aluno.getNome());
+        curso.setText(aluno.getCurso());
+
         btEditar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Intent itEditar = new Intent(
+                        getApplicationContext(),
+                        Editar.class);
+                itEditar.putExtra("objAluno", aluno);
+                startActivity(itEditar);
             }
         });
 
         btExcluir.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Intent itEditar = new Intent(
+                        getApplicationContext(),
+                        Excluir.class);
+                itEditar.putExtra("objAluno", aluno);
+                startActivity(itEditar);
             }
         });
         btVoltar.setOnClickListener(new View.OnClickListener() {
